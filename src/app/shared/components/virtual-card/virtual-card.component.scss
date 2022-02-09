@@ -1,0 +1,48 @@
+@import "../../../../styles.scss";
+:host .app-virtual-card {
+  :first-child {
+    width: 10vw;
+  }
+  display: flex;
+  flex-direction: row;
+  margin: 1rem 0.5rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex: 3 0;
+
+  &__img-mastercard-active {
+    @include card-img("card-active-mastercard.svg");
+  }
+  &__img-mastercard-expired {
+    @include card-img("card-inactive-mastercard.svg");
+  }
+  &__img-visa-blocked {
+    @include card-img("card-inactive-visa.svg");
+  }
+  &__img-visa-active {
+    @include card-img("card-active-visa.svg");
+  }
+
+  &__info-cont {
+    background: $cont-color;
+    height: 28vh;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+    margin: 0rem 1rem;
+    border-radius: 0.6rem;
+    white-space: nowrap;
+    &__item {
+      display: inline-block;
+      margin: 1.5rem 3rem;
+    }
+    &__inner {
+      flex-direction: row;
+    }
+  }
+
+  &__no-temp {
+    color: $cont-color;
+  }
+}

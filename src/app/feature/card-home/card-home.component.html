@@ -1,0 +1,36 @@
+<div class="app-card-home" aria-label="Virtual Card Details" tabindex="-1">
+  <span class="app-card-home__title">Virtual Card Details</span>
+  <div class="btn-group">
+    <button
+      type="button"
+      role="button"
+      class="btn dropdown-toggle"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      aria-controls="cardStatusSect"
+      tabindex="0"
+      id="btn1"
+    >
+      Card Options
+    </button>
+    <div class="dropdown-menu">
+      <li *ngFor="let cardData of cardData$ | async">
+        <a class="dropdown-item" (click)="onSelectCard(cardData)">{{
+          cardData?.status.toLowerCase()
+        }}</a>
+      </li>
+    </div>
+  </div>
+
+  <div *ngIf="cardInfo?.status" class="app-card-home__status">
+    <span
+      id="cardStatusSect"
+      role="card-status"
+      aria-labelledby="btn1"
+      [ngClass]="'app-card-home__status--' + cardInfo?.status.toLowerCase()"
+      >{{ cardInfo.status }}</span
+    >
+  </div>
+</div>
+<app-virtual-card [cardData]="cardInfo"></app-virtual-card>

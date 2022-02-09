@@ -1,0 +1,31 @@
+@import "../../../styles.scss";
+
+:host .app-card-home {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  &__title {
+    margin-left: 2vw;
+    margin-right: 0.5vw;
+    color: $base-color !important;
+    font-weight: 500;
+  }
+  &__status {
+    float: right;
+    margin-right: 6vw;
+    &--blocked {
+      @include status(red);
+    }
+    &--active {
+      @include status(lightgreen);
+    }
+    &--expired {
+      @include status(orange);
+    }
+  }
+}
+
+.dropdown-toggle {
+  background: #ffff;
+  font-size: 0.85rem;
+  border: 1px solid $base-color;
+}

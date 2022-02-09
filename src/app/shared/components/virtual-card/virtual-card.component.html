@@ -1,0 +1,95 @@
+<ng-container
+  [ngTemplateOutlet]="
+    cardData && cardData?.length !== 0 ? cardTemplate : noDataTemplate
+  "
+  [ngTemplateOutletContext]="{ cardData: cardData }"
+>
+</ng-container>
+
+<ng-template #cardTemplate>
+  <div
+    class="app-virtual-card"
+    tabindex="1"
+    [attr.aria-label]="
+      'Card details Information for ' +
+      cardData?.cardScheme.toLowerCase() +
+      ' where state is ' +
+      cardData?.status.toLowerCase() +
+      ' and Cardholder Name is ' +
+      cardData?.holder?.title +
+      '' +
+      cardData?.holder?.firstName +
+      '' +
+      cardData?.holder?.lastName +
+      'Card will Expiry in' +
+      cardData?.expiry +
+      ' Authorisations is €' +
+      (cardData?.authorisations ? cardData?.authorisations : 0) +
+      ''
+    "
+  >
+    <img
+      [ngClass]="
+        'app-virtual-card__img-' +
+        cardData?.cardScheme.toLowerCase() +
+        '-' +
+        cardData?.status.toLowerCase() +
+        ''
+      "
+    />
+
+    <div class="app-virtual-card__info-cont">
+      <div class="app-virtual-card__info-cont__inner">
+        <span class="app-virtual-card__info-cont__item">
+          <strong>ID </strong><br />
+          {{ cardData?.id }}
+        </span>
+        <span class="app-virtual-card__info-cont__item">
+          <strong>Cardholder Name</strong> <br />
+          {{ cardData?.holder?.title }} {{ cardData?.holder?.firstName }}
+          {{ cardData?.holder?.lastName }}</span
+        >
+        <span class="app-virtual-card__info-cont__item">
+          <strong> Expiry Date </strong><br />
+          {{ cardData?.expiry }}
+        </span>
+
+        <span class="app-virtual-card__info-cont__item">
+          <strong>PAN </strong><br />
+          {{ cardData?.maskedPan | panMask }}
+        </span>
+      </div>
+
+      <div class="app-virtual-card__info-cont__inner">
+        <span class="app-virtual-card__info-cont__item">
+          <strong>Authorisation Limit</strong> <br />
+          {{ cardData?.authorisationLimit | number: "1.2-2" }}
+        </span>
+        <span class="app-virtual-card__info-cont__item">
+          <strong>Authorisations</strong> <br />
+          {{
+            (cardData?.authorisations ? cardData?.authorisations : 0)
+              | number: "1.2-2"
+          }}</span
+        >
+        <span class="app-virtual-card__info-cont__item">
+          <strong>Max. card limit</strong> <br />
+          {{ (cardData?.limit ? cardData?.limit : 0) | number: "1.2-2" }}
+        </span>
+
+        <span class="app-virtual-card__info-cont__item">
+          <strong>External reference</strong> <br />
+          {{ cardData?.reference }}
+        </span>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noDataTemplate>
+  <div
+    class="app-virtual-card__no-temp d-flex p-2 justify-content-center bd-highlight bg-info mx-3 my-3"
+  >
+    Please select card from card option dropdown
+  </div>
+</ng-template>

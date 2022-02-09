@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@mixin card-img($card-img) {
+  background-size: cover !important;
+  border-radius: 0.7rem;
+  border: none;
+  margin-right: 15px;
+  min-width: 320px;
+  min-height: 18vh;
+  background: url("./assets/virtual-cards/" + $card-img) no-repeat;
+}
+
+@mixin status($colr) {
+  background: $colr;
+  padding: 0.35rem;
+  color: white;
+  font-size: 0.85rem;
+  vertical-align: -webkit-baseline-middle;
+}
+
+$base-color: rgb(94, 165, 216);
+$cont-color: rgb(242, 242, 242);
+
+.btn {
+  color: $base-color !important;
+  font-weight: 200;
+}
